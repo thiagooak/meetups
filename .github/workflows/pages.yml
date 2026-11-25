@@ -30,6 +30,8 @@ jobs:
         with:
           distribution: temurin
           java-version: "21"
+          cache: maven
+          cache-dependency-path: deps.edn
 
       - name: Install the Clojure CLI
         run: |

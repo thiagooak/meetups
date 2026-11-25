@@ -108,6 +108,11 @@ then on `.github/workflows/pages.yml` builds and deploys it:
   next,
 - and by hand, from Actions → Deploy to GitHub Pages → Run workflow.
 
+Dependencies are cached between runs, and only downloaded again when
+`deps.edn` changes. Maven Central sometimes turns GitHub's runners away with
+`429 Too Many Requests`; the workflow then waits and tries again, for up to
+four minutes. If it still fails, re-run the job.
+
 The site is at `https://<owner>.github.io/<repository>/`, or at a custom domain
 set under Settings → Pages. The workflow asks GitHub which, and passes the
 path to the build as `BASE_PATH`, so links work either way.
