@@ -1,0 +1,9 @@
+{:name        "clj-aus"
+ :organizer   "Burin Choomnuan"
+ :city        "Sydney, New South Wales"
+ :lat         -33.8688
+ :lng         151.2093
+ :format      :hybrid
+ :frequency   "Monthly"
+ :description "Australia's Clojure meetup: monthly and hybrid, with an in-person session in Sydney streamed to the rest of the country. Each session pairs one or two talks with social time, from language and tooling deep dives and production experience reports to beginner-friendly intros for developers coming from Java, Python or JavaScript, and talk months alternate with hands-on coding sessions. It covers the wider Clojure family too: ClojureScript, ClojureDart, Babashka and jank."
+ :links       ["https://clj-aus.github.io/"]}

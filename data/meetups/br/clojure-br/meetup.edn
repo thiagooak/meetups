@@ -1,0 +1,10 @@
+{:name        "Clojure BR"
+ :organizer   "Arthur Fücher"
+ :city        "Online"
+ :lat         -23.5505
+ :lng         -46.6333
+ :format      :online
+ :frequency   "Monthly"
+ :description "Monthly online talks for the Brazilian Clojure community. The group has run other formats before and wants to bring them back, including in-person meetups in São Paulo or Campinas."
+ :links       ["https://www.meetup.com/pt-br/clojure-br/events/"
+               "https://clojurehackers.org/"]}

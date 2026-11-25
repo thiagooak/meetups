@@ -1,0 +1,9 @@
+{:name        "New Jersey Clojurians"
+ :organizer   "Lorelai Lyons"
+ :city        "New Jersey"
+ :lat         40.8834
+ :lng         -74.306
+ :format      :in-person
+ :frequency   "Quarterly"
+ :description "Quarterly Scicloj-style meetups around New Jersey where people talk about what they're working on. Each one starts with time to mingle, then one or two speakers with Q&A, open discussion and a hangout afterwards."
+ :links       ["https://www.heylo.com/event/-P4eW8fYBX8fFxG5M63s?inviteId=4NrYkZED"]}

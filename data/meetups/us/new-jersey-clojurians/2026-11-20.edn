@@ -1,0 +1,10 @@
+{:title     "First meetup: an intro to Clojure at the REPL"
+ :time      "18:00"
+ :time-zone "America/New_York"
+ :url       "https://www.heylo.com/event/-P4eW8fYBX8fFxG5M63s?inviteId=4NrYkZED"
+ :venue     {:name    "New Jersey Rock Gym"
+             :address "373D Route 46W, Fairfield, NJ 07004"}
+ :photos    ["/photos/us/new-jersey-clojurians/2026-11-20-1.jpg"
+             "/photos/us/new-jersey-clojurians/2026-11-20-2.jpg"
+             "/photos/us/new-jersey-clojurians/2026-11-20-3.jpg"
+             "/photos/us/new-jersey-clojurians/2026-11-20-4.jpg"]}

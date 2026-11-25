@@ -1,0 +1,92 @@
+(ns app.views.meetup
+  (:require [app.views.helpers :as helpers]
+            [clojure.string :as str]
+            [app.views.layout :as layout]
+            [app.views.map :as meetup-map]))
+
+(defn- detail [label & content]
+  [:div.detail
+   [:dt label]
+   [:dd content]])
+
+(defn- next-event [{:keys [title url] :as event}]
+  (if-not event
+    "TBA"
+    (list (helpers/event-date event :long)
+          (when title
+            [:span.detail__extra
+             (if url
+               [:a {:href url :target "_blank" :rel "noopener"} title " ↗"]
+               title)]))))
+
+(defn- venue [{:keys [name address]}]
+  (if-not name
+    "TBA"
+    (list [:strong name]
+          (when address [:span.detail__extra address]))))
+
+(defn- past-meetup [{:keys [date title photos links]}]
+  (let [videos  (filter (comp helpers/youtube-id :url) links)
+        others  (remove (comp helpers/youtube-id :url) links)
+        caption (or title (helpers/day date))]
+    [:article.past-meetup
+     [:h3.past-meetup__title
+      [:time {:datetime date} (helpers/day date)]
+      (when title [:span.past-meetup__name title])]
+     (when (seq photos)
+       [:ul.photo-grid
+        (for [src photos]
+          [:li [:a {:href src :target "_blank"}
+                [:img {:src src :alt (str "Photo from " caption) :loading "lazy"}]]])])
+     (for [{:keys [label url]} videos]
+       [:div.video
+        [:iframe {:src     (str "https://www.youtube-nocookie.com/embed/" (helpers/youtube-id url))
+                  :title   label
+                  :loading "lazy"
+                  :allow   "encrypted-media; picture-in-picture; fullscreen"}]])
+     (when (seq others)
+       [:ul.links
+        (for [{:keys [label url]} others]
+          [:li [:a {:href url :target "_blank" :rel "noopener"} label " ↗"]])])]))
+
+(defn page [meetup opts]
+  (let [event (helpers/upcoming-event meetup)]
+    (layout/page
+     (assoc opts
+            :title (:name meetup)
+            :description (:description meetup)
+            :leaflet? true
+            :scripts ["/js/meetups.js"])
+     [:article.section
+      [:div.container
+       [:a.back {:href "/#meetups"} "← All meetups"]
+       [:header.meetup-header
+        [:p.meetup-header__place (helpers/place meetup)]
+        [:h1 (:name meetup)]
+        (helpers/format-badge (:format meetup))]
+       [:div.meetup-layout
+        [:div
+         (when-let [description (:description meetup)]
+           [:section
+            [:h2 "About"]
+            (for [paragraph (str/split description #"\n\n")]
+              [:p.description paragraph])])
+         (when-let [links (seq (:links meetup))]
+           [:section
+            [:h2 "Links"]
+            [:ul.links
+             (for [{:keys [label url]} links]
+               [:li [:a {:href url :target "_blank" :rel "noopener"} label " ↗"]])]])
+         (when-let [past (seq (helpers/past-events meetup))]
+           [:section
+            [:h2 "Past meetups"]
+            (map past-meetup past)])]
+        [:aside.card
+         [:dl.details
+          (detail "Next date" (next-event event))
+          (detail "Format" (helpers/format-labels (:format meetup)))
+          (detail "Frequency" (:frequency meetup "TBA"))
+          (detail "Organizer" (:organizer meetup "TBA"))
+          (detail "Country & City/Region" (helpers/place meetup))
+          (detail "Venue & address" (venue (or (:venue event) (:venue meetup))))]
+         (meetup-map/meetup-map [meetup] :single? true)]]]])))

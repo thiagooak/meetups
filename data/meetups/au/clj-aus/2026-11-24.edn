@@ -1,0 +1,7 @@
+{:title     "clj-aus #2: Jolt since September, and Clojure on the Wii"
+ :time      "19:00"
+ :time-zone "Australia/Sydney"
+ :url       "https://www.meetup.com/clojure-australia/events/317297998/"
+ :venue     {:name "Online"}
+ :photos    ["/photos/au/clj-aus/2026-11-24-1.jpg"
+             "/photos/au/clj-aus/2026-11-24-2.jpg"]}

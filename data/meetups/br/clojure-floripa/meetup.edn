@@ -1,0 +1,8 @@
+{:name        "Meetup Clojure Floripa"
+ :organizer   "Felipe Cortez de Sá"
+ :city        "Florianópolis, Santa Catarina"
+ :lat         -27.5954
+ :lng         -48.548
+ :format      :in-person
+ :frequency   "Quarterly"
+ :description "A quarterly meetup in Florianópolis: two 30-minute talks, 20 minutes of discussion, then a coffee break."}

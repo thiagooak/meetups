@@ -1,0 +1,17 @@
+;; Each time your meetup meets: copy this into its folder, named
+;; after the date, like data/meetups/pl/clojure-warsaw/2027-01-12.edn.
+;; Add it when you announce the date, and after the meetup, what it
+;; left: photos, slides, recordings. Leave out what you don't have.
+
+{:title     "What it's about"
+ :time      "19:00"           ; optional, with its time zone
+ :time-zone "Europe/Warsaw"
+ :url       "https://..."     ; where people sign up
+ ;; Only if it's not your usual venue:
+ ;; :venue  {:name "Venue" :address "Street 1, City"}
+
+ ;; After the meetup
+ :photos    ["/photos/pl/clojure-warsaw/2027-01-12-1.jpg"
+             "/photos/pl/clojure-warsaw/2027-01-12-2.jpg"]
+ :links     [{:label "Slides" :url "https://..."}
+             "https://youtu.be/..."]} ; YouTube links play on the page

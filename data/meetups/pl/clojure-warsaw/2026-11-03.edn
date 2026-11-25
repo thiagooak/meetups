@@ -1,0 +1,8 @@
+{:title  "Clojure Warsaw #1"
+ :photos ["/photos/pl/clojure-warsaw/2026-11-03-1.jpg"
+          "/photos/pl/clojure-warsaw/2026-11-03-2.jpg"
+          "/photos/pl/clojure-warsaw/2026-11-03-3.jpg"]
+ :links  [{:label "From Happy Paths to Oracles"
+           :url   "https://claude.ai/artifact/Ky7cQ1ng2qRjpBtgwRo9JY"}
+          {:label "Thinking on e-paper with Clojure"
+           :url   "https://danieljanus.pl/talks/20261103-clerkenwell"}]}

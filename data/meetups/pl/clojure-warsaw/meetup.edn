@@ -1,0 +1,9 @@
+{:name        "Clojure Warsaw"
+ :organizer   "Daniel Janus"
+ :city        "Warsaw"
+ :lat         52.2297
+ :lng         21.0122
+ :format      :in-person
+ :frequency   "Bi-monthly"
+ :description "Every two months in Warsaw: about an hour of talks followed by discussion and a couple of hours of informal socialising."
+ :links       ["https://clojure-warsaw.github.io/"]}

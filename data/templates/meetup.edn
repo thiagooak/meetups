@@ -1,0 +1,22 @@
+;; A new meetup: copy this to
+;; data/meetups/<country code>/<your-meetup>/meetup.edn, like
+;; data/meetups/pl/clojure-warsaw/meetup.edn, and fill it in. The
+;; country code is the two-letter one, in lower case. Your folder's
+;; name, in lower-case words with dashes, is your page's address:
+;; /meetups/clojure-warsaw/.
+
+{:name        "Your Meetup"
+ :organizer   "Your Name"
+ :city        "City"          ; the region too, if it helps
+ :lat         0.0             ; where the pin goes: right-click
+ :lng         0.0             ; the place on Google Maps
+ :format      :in-person      ; :in-person, :hybrid or :online
+ :frequency   "Monthly"
+ :description "What you do, who it's for and what to expect.
+
+               A blank line starts a new paragraph."
+ :links       ["https://..."] ; Meetup.com, Luma, Discord...
+
+ ;; Optional: where you usually meet.
+ ;; :venue    {:name "Venue" :address "Street 1, City"}
+ }

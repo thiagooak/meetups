@@ -1,0 +1,12 @@
+{:name        "Clojurehackers"
+ :organizer   "Filipe Welington Vargas de Andrade"
+ :city        "Campinas, São Paulo"
+ :lat         -22.8174
+ :lng         -47.069
+ :format      :in-person
+ :frequency   "Bi-monthly"
+ :description "A Clojure hackerspace in Campinas to share ideas about Clojure and functional programming. Every two months, on a Saturday, people meet at UNICAMP for up to two and a half hours of talks, workshops and hands-on sessions led by whoever wants to share what they know. UNICAMP students can earn extension-hour credits by taking part."
+ :links       ["https://www.meetup.com/pt-br/clojure-br/events/"
+               "https://clojurehackers.org/"]
+ :venue       {:name    "UNICAMP, IC3, Lab 300"
+               :address "R. Saturnino de Brito 573, Cidade Universitária, Campinas, SP"}}

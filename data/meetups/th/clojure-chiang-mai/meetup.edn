@@ -1,0 +1,9 @@
+{:name        "Clojure Hangout"
+ :organizer   "Fabian Merkle"
+ :city        "Chiang Mai"
+ :lat         18.7883
+ :lng         98.9853
+ :format      :in-person
+ :frequency   "Weekly"
+ :description "A weekly developer hangout in Chiang Mai for coding sessions, demos and tech discussions over coffee. Past topics include contributing to open source and setting up NixOS."
+ :links       ["https://www.meetup.com/clojure-chiang-mai/events/"]}

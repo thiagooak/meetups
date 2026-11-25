@@ -1,0 +1,8 @@
+{:name        "Prague Clojure or prgclj"
+ :organizer   "Adam Kalisz"
+ :city        "Prague"
+ :lat         50.0755
+ :lng         14.4378
+ :format      :in-person
+ :frequency   "Almost monthly, with a summer break"
+ :description "Talks and mastermind sessions in Prague, almost every month, with a summer break and no meetup right before Christmas. Also known as prgclj."}

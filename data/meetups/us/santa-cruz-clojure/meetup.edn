@@ -1,0 +1,8 @@
+{:name        "Santa Cruz Clojure Meetup"
+ :organizer   "Arthur Ulfeldt"
+ :city        "Santa Cruz, California"
+ :lat         36.9741
+ :lng         -122.0308
+ :format      :in-person
+ :frequency   "Weekly"
+ :description "A weekly Clojure coffee hangout in Santa Cruz that has been running for more than ten years."}

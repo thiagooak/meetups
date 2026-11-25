@@ -1,0 +1,9 @@
+{:name        "Clojure and Functional Programming meetup"
+ :organizer   "Gleb Zakharov"
+ :city        "Bilbao"
+ :lat         43.263
+ :lng         -2.935
+ :format      :in-person
+ :frequency   "Monthly"
+ :description "A monthly in-person meetup in Bilbao with coding sessions and a book and papers club on Clojure and functional programming, run as part of the Bilbao Programming Group."
+ :links       ["https://www.meetup.com/bilbao-programming-group/events/"]}

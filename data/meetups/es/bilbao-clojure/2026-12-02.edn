@@ -1,0 +1,6 @@
+{:title     "Clojure: Functional Lisp"
+ :time      "19:00"
+ :time-zone "Europe/Madrid"
+ :url       "https://www.meetup.com/bilbao-programming-group/events/317525554"
+ :venue     {:name    "La Perrera Espazioa"
+             :address "Sabino Arana Etorbidea 50, 48012 Bilbao"}}

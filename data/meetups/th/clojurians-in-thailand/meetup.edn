@@ -1,0 +1,10 @@
+{:name        "(clj-in-th)"
+ :organizer   "Edward Hughes"
+ :city        "Bangkok"
+ :lat         13.7563
+ :lng         100.5018
+ :format      :hybrid
+ :frequency   "Bi-weekly"
+ :description "A hybrid meetup for Clojurians in Thailand, every two weeks. It starts with small workshops and coding sessions that show what Clojure can do and help newcomers get going with the standard tooling, with guest speakers, code jams and seminars to come as the community grows. In the long run, the group wants to turn its sessions into Clojure resources in Thai."
+ :links       ["https://clj-in-th.github.io"
+               "https://clj-in-th.github.io/"]}
