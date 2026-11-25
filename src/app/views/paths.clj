@@ -1,7 +1,8 @@
 (ns app.views.paths
   "The pages for organizers: adding a meetup, getting it sponsored, and
   keeping it up to date. The home page has a card for each."
-  (:require [app.views.layout :as layout]))
+  (:require [app.views.helpers :as helpers]
+            [app.views.layout :as layout]))
 
 (def cards
   [{:href    "/add-your-meetup/"
@@ -68,7 +69,7 @@
            [:li "Copy the template below into it as " (code "meetup.edn")
             ", and fill it in. The comments say what goes where."]
            [:li "Got a date for your next meetup? Add it too, see "
-            [:a {:href "/update-your-meetup/"} "Update your meetup"] "."]
+            [:a {:href (helpers/url "/update-your-meetup/")} "Update your meetup"] "."]
            [:li "Open a pull request, and go through its checklist."]
            [:li "We review it, and once it's merged your meetup is on the map."]]]
          [:section
@@ -81,8 +82,8 @@
           "Add your meetup on GitHub ↗"]
          [:p.muted "With git, it's the same file: "
           (code "data/templates/meetup.edn") " in the repository. "
-          (code "clojure -X:test") " checks it."]
-         [:p "Looking for support to run it? " [:a {:href "/sponsorship/"} "Get sponsored"] "."]]))
+          (code "clojure -X:build") " checks it."]
+         [:p "Looking for support to run it? " [:a {:href (helpers/url "/sponsorship/")} "Get sponsored"] "."]]))
 
 (defn sponsorship-page [{:keys [sponsorship-form-url] :as site}]
   (page site
@@ -109,7 +110,7 @@
            "We review every application and get back to you by email."]]]
         [[:a.button {:href (or sponsorship-form-url "#") :target "_blank" :rel "noopener"}
           "Apply to the pilot program ↗"]
-         [:p "Just want your meetup on the map? " [:a {:href "/add-your-meetup/"} "Add your meetup"]
+         [:p "Just want your meetup on the map? " [:a {:href (helpers/url "/add-your-meetup/")} "Add your meetup"]
           ", no sponsorship needed."]]))
 
 (defn update-page
@@ -141,4 +142,4 @@
           " on GitHub, under its country's code. There, Add file → Create new file adds a date."]
          [:p "Its photos go in the same folders under " (external (github site "tree" "static/photos") "the photos folder")
           ": Add file → Upload files."]
-         [:p "Not on the map yet? " [:a {:href "/add-your-meetup/"} "Add your meetup"] "."]]))
+         [:p "Not on the map yet? " [:a {:href (helpers/url "/add-your-meetup/")} "Add your meetup"] "."]]))

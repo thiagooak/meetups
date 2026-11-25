@@ -1,17 +1,19 @@
 ;; Settings for the whole site.
 
 {;; The repository the site is built from. The pages for organizers link to
- ;; its files on GitHub, so that's where pull requests go.
+ ;; its files on GitHub, so that's where pull requests go. On GitHub Actions,
+ ;; the repository and branch being built take their place.
  :repo-url             "https://github.com/maguse05/clojure-first-steps"
  :repo-branch          "main"
 
  ;; The Clojure Meetup Pilot Program's sign-up form.
- ;; TODO: the real link. Until then the build warns, and the button goes nowhere.
- :sponsorship-form-url nil
+ :sponsorship-form-url "https://docs.google.com/forms/d/1qsbrli9ZoM8sCAQiUtC6S8_1jhCoyxEu17Hu3Wj23NI/edit"
 
  ;; Newsletter sign-ups post to a Mailchimp embedded form: Audience → Signup
  ;; forms → Embedded forms has the action URL. The address goes as EMAIL, and
  ;; :fields adds hidden ones, like a tag's id as "tags". Point Mailchimp's
- ;; thank-you page at /?status=subscribed#newsletter to thank people here.
+ ;; thank-you page at the home page with ?status=subscribed#newsletter, like
+ ;; https://<owner>.github.io/<repository>/?status=subscribed#newsletter, to
+ ;; thank people here.
  :newsletter-form      {:action nil
                         :fields {}}}

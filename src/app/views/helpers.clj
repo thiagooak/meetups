@@ -4,6 +4,16 @@
            (java.time.format DateTimeFormatter)
            (java.util Locale)))
 
+(def ^:dynamic *base-path*
+  "Where the site is served from: \"\" at the root of a domain, \"/<repo>\" on
+  GitHub Pages without a custom domain."
+  "")
+
+(defn url
+  "A path on this site, like \"/style.css\", under the base path."
+  [path]
+  (str *base-path* path))
+
 (def format-labels
   (array-map :in-person "In person"
              :hybrid    "Hybrid"
@@ -14,7 +24,7 @@
    (format-labels meetup-format)])
 
 (defn meetup-path [{:keys [slug]}]
-  (str "/meetups/" slug "/"))
+  (url (str "/meetups/" slug "/")))
 
 (defn place [{:keys [city country]}]
   (str/join ", " (remove str/blank? [city country])))

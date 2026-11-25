@@ -36,8 +36,8 @@
      (when (seq photos)
        [:ul.photo-grid
         (for [src photos]
-          [:li [:a {:href src :target "_blank"}
-                [:img {:src src :alt (str "Photo from " caption) :loading "lazy"}]]])])
+          [:li [:a {:href (helpers/url src) :target "_blank"}
+                [:img {:src (helpers/url src) :alt (str "Photo from " caption) :loading "lazy"}]]])])
      (for [{:keys [label url]} videos]
        [:div.video
         [:iframe {:src     (str "https://www.youtube-nocookie.com/embed/" (helpers/youtube-id url))
@@ -59,7 +59,7 @@
             :scripts ["/js/meetups.js"])
      [:article.section
       [:div.container
-       [:a.back {:href "/#meetups"} "← All meetups"]
+       [:a.back {:href (helpers/url "/#meetups")} "← All meetups"]
        [:header.meetup-header
         [:p.meetup-header__place (helpers/place meetup)]
         [:h1 (:name meetup)]

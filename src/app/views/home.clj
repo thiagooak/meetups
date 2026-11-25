@@ -30,7 +30,7 @@
    [:div.container
     [:div.meetups-header
      [:h2 "All meetups"]
-     [:form.country-filter {:action "/" :method "get" :role "search"}
+     [:form.country-filter {:action (helpers/url "/") :method "get" :role "search"}
       [:label.visually-hidden {:for "country-filter"} "Filter by country"]
       [:input#country-filter {:type "search" :name "country" :list "countries"
                               :placeholder "Filter by country" :autocomplete "off"}]
@@ -44,7 +44,7 @@
       "There's no Clojure meetup in " [:span.empty-state__country] " yet."]
      [:p "Be the one who brings your local Clojure community together. "
       "Tell us about the meetup you'd like to start and we'll help you get it off the ground."]
-     [:a.button {:href "/sponsorship/"} "Apply with your meetup proposal"]]
+     [:a.button {:href (helpers/url "/sponsorship/")} "Apply with your meetup proposal"]]
     [:div.empty-state {:data-empty "none" :hidden true}
      [:p.empty-state__title
       "No meetups match “" [:span.empty-state__query] "”."]
@@ -63,7 +63,7 @@
     [:ul.path-grid
      (for [{:keys [href eyebrow title text cta]} paths/cards]
        [:li
-        [:a.path-card {:href href}
+        [:a.path-card {:href (helpers/url href)}
          [:span.path-card__eyebrow eyebrow]
          [:span.path-card__title title]
          [:span.path-card__text text]

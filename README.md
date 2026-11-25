@@ -13,10 +13,10 @@ applications spreadsheet and its Apps Script. Pages are rendered with
 ## Building it
 
 ```sh
-clojure -X:build               # writes the site to dist/
-clojure -X:serve               # builds, then serves it on http://localhost:8080
+clojure -X:build                          # writes the site to dist/
+clojure -X:serve                          # builds, then serves it on http://localhost:8080
 clojure -X:serve :port 3000
-clojure -X:test
+BASE_PATH=/meetups clojure -X:serve       # like GitHub Pages: http://localhost:8080/meetups/
 ```
 
 `serve` doesn't watch for changes: run `clojure -X:build` again, or
@@ -58,26 +58,25 @@ pages walk them through it:
 | `/sponsorship/` | The pilot program, and a link to its sign-up form. |
 
 `.github/pull_request_template.md` is the checklist those pull requests get.
-Change the templates and the pages change with them; `clojure -X:test` checks
-that they still make a valid meetup.
+Change the templates and the pages change with them.
 
 The build stops and names the file when something's off, like a country
 folder that isn't a code, a file that isn't named after a date, a `:time`
 that isn't like `"19:00"` or a link that doesn't start with `https://`.
-`clojure -X:test` also checks that every photo is in `static/` and every
-meetup is on the map.
 
 ## Settings
 
 `data/site.edn` has:
 
 - `:repo-url` and `:repo-branch`: where the organizer pages send people to
-  edit files and open pull requests.
+  edit files and open pull requests. On GitHub Actions, the repository and
+  branch being built take their place.
 - `:sponsorship-form-url`: the pilot program's sign-up form.
 - `:newsletter-form`: a Mailchimp embedded form (Audience → Signup forms →
   Embedded forms has the URL), which gets the address as `EMAIL`. `:fields`
   adds hidden ones, like the id of a Mailchimp tag as `tags`. If Mailchimp
-  sends people back to `/?status=subscribed#newsletter`, the page thanks them.
+  sends people back to the home page with `?status=subscribed#newsletter`,
+  the page thanks them.
 
 The build warns while the sign-up form or the newsletter has no URL.
 
@@ -85,7 +84,7 @@ The build warns while the sign-up form or the newsletter has no URL.
 
 | Path | |
 | --- | --- |
-| `data/meetups/` | A file per meetup. |
+| `data/meetups/` | A folder per country, a folder per meetup in it. |
 | `data/templates/` | The templates the organizer pages show. |
 | `data/site.edn` | Repository, sign-up form and newsletter settings. |
 | `static/` | Copied to the site as it is: styles, scripts, images, photos. |
@@ -95,16 +94,26 @@ The build warns while the sign-up form or the newsletter has no URL.
 | `src/app/views/` | Hiccup views: layout, home, meetup page, map, organizer pages. |
 | `static/js/` | Map interactions, country filter, the newsletter's thank-you note. |
 | `static/style.css` | Styles, following clojure.org's palette. |
+| `.github/workflows/pages.yml` | Builds the site and deploys it to GitHub Pages. |
 
 ## Deploying
 
-`dist/` works on any static host (GitHub Pages, Netlify, Vercel, Cloudflare
-Pages, S3): pages are `index.html` files in folders, and the host's 404 page
-is `404.html`. The site expects to be at the root of its domain.
+The site runs on GitHub Pages. Once the repository is on GitHub, set
+Settings → Pages → Build and deployment → Source to **GitHub Actions**. From
+then on `.github/workflows/pages.yml` builds and deploys it:
 
-Which events are coming up, and the order of the meetup list, are worked out
-when the site is built, so rebuild it at least once a day, like with a
-scheduled CI job, or a past event keeps showing as next.
+- on every push to `main`, so a merged pull request is live in a minute or two,
+- every day at 05:17 UTC, because which events are coming up is worked out
+  when the site is built, and a past event would otherwise keep showing as
+  next,
+- and by hand, from Actions → Deploy to GitHub Pages → Run workflow.
+
+The site is at `https://<owner>.github.io/<repository>/`, or at a custom domain
+set under Settings → Pages. The workflow asks GitHub which, and passes the
+path to the build as `BASE_PATH`, so links work either way.
+
+`dist/` also works on any other static host: pages are `index.html` files in
+folders, and the 404 page is `404.html`.
 
 ## Security
 
@@ -120,5 +129,8 @@ scheduled CI job, or a past event keeps showing as next.
   The map's JSON escapes `/`, so it can't close its `<script>` tag.
 - Leaflet comes from unpkg with Subresource Integrity hashes, so a tampered
   copy won't run.
+- The deploy workflow pins every action to a commit, checks the Clojure
+  installer against its SHA-256, and gives each job only the permissions it
+  needs: the build can read the repository, only the deploy job can publish.
 - `serve` only listens on localhost.
 - The meetup files are public. Only put in them what organizers agreed to show.

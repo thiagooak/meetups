@@ -1,5 +1,6 @@
 (ns app.views.layout
-  (:require [hiccup2.core :as h]))
+  (:require [app.views.helpers :as helpers]
+            [hiccup2.core :as h]))
 
 (def ^:private leaflet-cdn "https://unpkg.com/leaflet@1.9.4/dist")
 
@@ -39,13 +40,13 @@
 (defn- header []
   [:header.site-header
    [:div.container.site-header__inner
-    [:a.brand {:href "/"}
-     [:img.brand__logo {:src "/images/clojure-logo.png" :width 48 :height 48 :alt ""}]
+    [:a.brand {:href (helpers/url "/")}
+     [:img.brand__logo {:src (helpers/url "/images/clojure-logo.png") :width 48 :height 48 :alt ""}]
      [:span.brand__text "Clojure " [:span.brand__highlight "Meetups"]]]
     [:nav
-     [:a {:href "/#map"} "Map"]
-     [:a {:href "/#meetups"} "Meetups"]
-     [:a.button.button--small {:href "/add-your-meetup/"} "Add your meetup"]]]])
+     [:a {:href (helpers/url "/#map")} "Map"]
+     [:a {:href (helpers/url "/#meetups")} "Meetups"]
+     [:a.button.button--small {:href (helpers/url "/add-your-meetup/")} "Add your meetup"]]]])
 
 (defn- newsletter
   "Mailchimp's embedded forms take the address as EMAIL."
@@ -88,14 +89,14 @@
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
       [:title (cond->> "Clojure Meetups" title (str title " · "))]
       [:meta {:name "description" :content (or description "Find a Clojure meetup near you, or start one.")}]
-      [:link {:rel "icon" :type "image/png" :href "/images/favicon.png"}]
+      [:link {:rel "icon" :type "image/png" :href (helpers/url "/images/favicon.png")}]
       [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
       [:link {:rel "preconnect" :href "https://fonts.gstatic.com" :crossorigin ""}]
       [:link {:rel "stylesheet" :href fonts-url}]
       (when leaflet?
         [:link {:rel "stylesheet" :href (str leaflet-cdn "/leaflet.css")
                 :integrity (:css leaflet-integrity) :crossorigin ""}])
-      [:link {:rel "stylesheet" :href "/style.css"}]
+      [:link {:rel "stylesheet" :href (helpers/url "/style.css")}]
       [:script (h/raw "document.documentElement.classList.add('js')")]]
      [:body
       (header)
@@ -104,11 +105,11 @@
       (when leaflet?
         [:script {:src (str leaflet-cdn "/leaflet.js") :integrity (:js leaflet-integrity) :crossorigin ""}])
       (for [src (cons "/js/notices.js" scripts)]
-        [:script {:src src}])]])))
+        [:script {:src (helpers/url src)}])]])))
 
 (defn not-found [opts]
   (page (assoc opts :title "Not found")
         [:section.hero
          [:div.container
           [:h1 "Page not found"]
-          [:p [:a {:href "/"} "Back to all meetups"]]]]))
+          [:p [:a {:href (helpers/url "/")} "Back to all meetups"]]]]))
